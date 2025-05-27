@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Babushka - Wisdom-Guided Relationship Advisor</title>
+    <title>Theotokos - Divine Guidance</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #536878 0%, #708090 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -32,24 +32,26 @@
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #708090;
         }
 
-        .babushka-icon {
+        .theotokos-icon {
             font-size: 4rem;
             margin-bottom: 20px;
             display: block;
+            color: #536878;
         }
 
         h1 {
             font-size: 2.5rem;
-            color: #4a4a4a;
+            color: #36454f;
             margin-bottom: 10px;
             font-weight: bold;
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #666;
+            color: #536878;
             font-style: italic;
         }
 
@@ -60,6 +62,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
             margin-bottom: 20px;
+            border: 2px solid #708090;
         }
 
         .messages {
@@ -84,41 +87,45 @@
         }
 
         .user-message .message-bubble {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #E69DB8 0%, #E69DB8 100%);
             color: white;
             border-radius: 20px 20px 5px 20px;
             padding: 15px 20px;
             display: inline-block;
             max-width: 70%;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 5px 15px rgba(230, 157, 184, 0.3);
+            border: 2px solid #DBDBDB;
         }
 
         .bot-message .message-bubble {
             background: #fff;
-            color: #333;
+            color: #36454f;
             border-radius: 20px 20px 20px 5px;
             padding: 15px 20px;
             display: inline-block;
             max-width: 80%;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #667eea;
+            border-left: 5px solid #536878;
+            border: 2px solid #708090;
+            border-left: 5px solid #536878;
         }
 
         .wisdom-tag {
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #8b4513;
+            background: linear-gradient(45deg, #E69DB8, #DBDBDB);
+            color: #36454f;
             padding: 5px 12px;
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
             margin-bottom: 10px;
             display: inline-block;
+            border: 1px solid #708090;
         }
 
         .input-area {
             padding: 20px;
             background: white;
-            border-top: 2px solid #f0f0f0;
+            border-top: 2px solid #708090;
         }
 
         .input-container {
@@ -130,7 +137,7 @@
         #userInput {
             flex: 1;
             padding: 15px 20px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #708090;
             border-radius: 25px;
             font-size: 1rem;
             font-family: inherit;
@@ -139,12 +146,12 @@
         }
 
         #userInput:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+            border-color: #536878;
+            box-shadow: 0 0 10px rgba(83, 104, 120, 0.2);
         }
 
         #sendButton {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #536878 0%, #708090 100%);
             color: white;
             border: none;
             border-radius: 25px;
@@ -153,11 +160,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            border: 2px solid #DBDBDB;
         }
 
         #sendButton:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(83, 104, 120, 0.4);
+            background: linear-gradient(135deg, #708090 0%, #536878 100%);
         }
 
         #sendButton:disabled {
@@ -169,7 +178,7 @@
         .typing-indicator {
             display: none;
             padding: 15px 20px;
-            color: #666;
+            color: #536878;
             font-style: italic;
         }
 
@@ -188,10 +197,11 @@
             border-radius: 20px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #708090;
         }
 
         .examples h3 {
-            color: #4a4a4a;
+            color: #36454f;
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
@@ -204,19 +214,19 @@
 
         .example-button {
             background: #f8f9fa;
-            border: 2px solid #e9ecef;
+            border: 2px solid #708090;
             border-radius: 15px;
             padding: 10px 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
-            color: #495057;
+            color: #36454f;
         }
 
         .example-button:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: #667eea;
+            background: linear-gradient(135deg, #E69DB8 0%, #DBDBDB 100%);
+            color: #36454f;
+            border-color: #536878;
             transform: translateY(-2px);
         }
 
@@ -278,51 +288,51 @@
 <body>
     <div class="container">
         <div class="header">
-            <span class="babushka-icon">👵🏻</span>
-            <h1>Babushka</h1>
-            <p class="subtitle">Wisdom-guided relationship advisor drawing from generations of experience</p>
+            <span class="theotokos-icon">🕊️</span>
+            <h1>Theotokos</h1>
+            <p class="subtitle">Divine Guidance </p>
         </div>
 
         <div class="chat-container">
             <div class="messages" id="messages">
                 <div class="message bot-message">
                     <div class="message-bubble">
-                        <div class="wisdom-tag">✨ Ancient Wisdom</div>
-                        Welcome, dear child! I am Babushka, your relationship advisor with the wisdom of many generations. Tell me about your relationship situation, and I will guide you with the practical wisdom that has helped families for centuries. What weighs on your heart today?
+                        <div class="wisdom-tag">✨ Divine Wisdom</div>
+                        Peace be with you, dear child! I am Theotokos, offering divine guidance for your relationships through the wisdom of faith and love. Share what troubles your heart, and I will provide counsel rooted in compassion and understanding. What seeks guidance in your heart today?
                     </div>
                 </div>
             </div>
             
             <div class="typing-indicator" id="typingIndicator">
-                <span class="wisdom-tag">🤔 Thinking</span>
-                Babushka is considering your situation<span class="typing-dots">...</span>
+                <span class="wisdom-tag">🙏 Praying</span>
+                Theotokos is seeking divine guidance for your situation<span class="typing-dots">...</span>
             </div>
 
             <div class="input-area">
                 <div class="input-container">
-                    <input type="text" id="userInput" placeholder="Tell Babushka about your relationship situation..." maxlength="500">
+                    <input type="text" id="userInput" placeholder="Share your heart with Theotokos..." maxlength="500">
                     <button id="sendButton">
-                        <i class="fas fa-heart"></i> Send
+                        <i class="fas fa-dove"></i> Send
                     </button>
                 </div>
             </div>
         </div>
 
         <div class="examples">
-            <h3><i class="fas fa-lightbulb"></i> Need inspiration? Try asking about:</h3>
+            <h3><i class="fas fa-lightbulb"></i> Seek guidance about:</h3>
             <div class="example-buttons">
-                <button class="example-button" onclick="fillInput('My partner and I keep fighting about money')">Money disagreements</button>
-                <button class="example-button" onclick="fillInput('I feel like my partner doesn\'t listen to me')">Communication issues</button>
-                <button class="example-button" onclick="fillInput('We\'re thinking about moving in together')">Taking next steps</button>
-                <button class="example-button" onclick="fillInput('My partner\'s family doesn\'t like me')">Family dynamics</button>
-                <button class="example-button" onclick="fillInput('We have different life goals')">Future planning</button>
-                <button class="example-button" onclick="fillInput('I\'m not sure if this relationship is right for me')">Relationship doubts</button>
+                <button class="example-button" onclick="fillInput('My partner and I keep fighting about money')">Financial harmony</button>
+                <button class="example-button" onclick="fillInput('I feel like my partner doesn\'t listen to me')">Communication struggles</button>
+                <button class="example-button" onclick="fillInput('We\'re thinking about moving in together')">Sacred commitments</button>
+                <button class="example-button" onclick="fillInput('My partner\'s family doesn\'t like me')">Family blessings</button>
+                <button class="example-button" onclick="fillInput('We have different life goals')">Life's purpose together</button>
+                <button class="example-button" onclick="fillInput('I\'m not sure if this relationship is right for me')">Divine discernment</button>
             </div>
         </div>
     </div>
 
     <script>
-        const API_BASE_URL = 'https://babushka-production.up.railway.app';
+        const API_BASE_URL = 'https://theotokos-production.up.railway.app';
         const messagesContainer = document.getElementById('messages');
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
@@ -362,7 +372,7 @@
             } catch (error) {
                 console.error('Error:', error);
                 hideTyping();
-                addMessage('Oh dear, Babushka is having trouble right now. Please try again in a moment. Sometimes wisdom needs a little time to flow properly!', 'bot', true);
+                addMessage('My dear child, I am having difficulty connecting with divine wisdom right now. Please try again in a moment. Sometimes guidance needs quiet prayer to flow properly.', 'bot', true);
             }
         }
 
@@ -376,7 +386,7 @@
             if (sender === 'bot' && !isError) {
                 const wisdomTag = document.createElement('div');
                 wisdomTag.className = 'wisdom-tag';
-                wisdomTag.innerHTML = '✨ Babushka\'s Wisdom';
+                wisdomTag.innerHTML = '✨ Divine Guidance';
                 bubbleDiv.appendChild(wisdomTag);
             }
             
@@ -403,7 +413,7 @@
         function hideTyping() {
             typingIndicator.style.display = 'none';
             sendButton.disabled = false;
-            sendButton.innerHTML = '<i class="fas fa-heart"></i> Send';
+            sendButton.innerHTML = '<i class="fas fa-dove"></i> Send';
         }
 
         function fillInput(text) {

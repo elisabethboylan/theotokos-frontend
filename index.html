@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #536878 0%, #708090 100%);
+            background: linear-gradient(135deg, #0171BD 0%, #26BCE0 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -28,57 +28,95 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 2px solid #708090;
+            background: #F7FAF7;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.2);
+            border: 3px solid #26BCE0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(38, 188, 224, 0.1) 0%, transparent 70%);
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
         }
 
         .theotokos-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            display: block;
-            color: #536878;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #DFAF3B 0%, #CD4979 100%);
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(223, 175, 59, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .theotokos-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #F7FAF7;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #36454f;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #CD4979 0%, #DFAF3B 30%, #CD4979 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
             font-weight: bold;
+            position: relative;
+            z-index: 2;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: #536878;
+            font-size: 1.3rem;
+            color: #0171BD;
             font-style: italic;
+            position: relative;
+            z-index: 2;
         }
 
         .chat-container {
-            background: white;
-            border-radius: 20px;
+            background: #F7FAF7;
+            border-radius: 25px;
             padding: 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.15);
             overflow: hidden;
-            margin-bottom: 20px;
-            border: 2px solid #708090;
+            margin-bottom: 25px;
+            border: 3px solid #26BCE0;
         }
 
         .messages {
-            height: 400px;
+            height: 450px;
             overflow-y: auto;
-            padding: 20px;
-            background: #f8f9fa;
+            padding: 25px;
+            background: linear-gradient(145deg, #F7FAF7 0%, rgba(38, 188, 224, 0.05) 100%);
         }
 
         .message {
-            margin-bottom: 20px;
-            animation: fadeIn 0.5s ease-in;
+            margin-bottom: 25px;
+            animation: fadeIn 0.6s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -87,165 +125,181 @@
         }
 
         .user-message .message-bubble {
-            background: linear-gradient(135deg, #E69DB8 0%, #E69DB8 100%);
-            color: white;
-            border-radius: 20px 20px 5px 20px;
-            padding: 15px 20px;
+            background: linear-gradient(135deg, #CD4979 0%, #DFAF3B 100%);
+            color: #F7FAF7;
+            border-radius: 25px 25px 8px 25px;
+            padding: 18px 24px;
             display: inline-block;
-            max-width: 70%;
-            box-shadow: 0 5px 15px rgba(230, 157, 184, 0.3);
-            border: 2px solid #DBDBDB;
+            max-width: 75%;
+            box-shadow: 0 8px 25px rgba(205, 73, 121, 0.3);
+            border: 2px solid rgba(247, 250, 247, 0.2);
+            font-weight: 500;
         }
 
         .bot-message .message-bubble {
-            background: #fff;
-            color: #36454f;
-            border-radius: 20px 20px 20px 5px;
-            padding: 15px 20px;
+            background: linear-gradient(135deg, #F7FAF7 0%, rgba(38, 188, 224, 0.1) 100%);
+            color: #0171BD;
+            border-radius: 25px 25px 25px 8px;
+            padding: 18px 24px;
             display: inline-block;
-            max-width: 80%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #536878;
-            border: 2px solid #708090;
-            border-left: 5px solid #536878;
+            max-width: 85%;
+            box-shadow: 0 8px 25px rgba(1, 113, 189, 0.15);
+            border: 2px solid #26BCE0;
+            border-left: 6px solid #DFAF3B;
         }
 
         .wisdom-tag {
-            background: linear-gradient(45deg, #E69DB8, #DBDBDB);
-            color: #36454f;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            background: linear-gradient(45deg, #DFAF3B, #CD4979);
+            color: #F7FAF7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: inline-block;
-            border: 1px solid #708090;
+            box-shadow: 0 4px 15px rgba(223, 175, 59, 0.3);
         }
 
         .input-area {
-            padding: 20px;
-            background: white;
-            border-top: 2px solid #708090;
+            padding: 25px;
+            background: linear-gradient(135deg, #F7FAF7 0%, rgba(26, 188, 224, 0.05) 100%);
+            border-top: 3px solid #26BCE0;
         }
 
         .input-container {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             align-items: stretch;
         }
 
         #userInput {
             flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #708090;
-            border-radius: 25px;
-            font-size: 1rem;
+            padding: 18px 25px;
+            border: 3px solid #26BCE0;
+            border-radius: 30px;
+            font-size: 1.1rem;
             font-family: inherit;
             outline: none;
             transition: all 0.3s ease;
+            background: #F7FAF7;
+            color: #0171BD;
         }
 
         #userInput:focus {
-            border-color: #536878;
-            box-shadow: 0 0 10px rgba(83, 104, 120, 0.2);
+            border-color: #DFAF3B;
+            box-shadow: 0 0 20px rgba(223, 175, 59, 0.3);
+            transform: translateY(-2px);
         }
 
         #sendButton {
-            background: linear-gradient(135deg, #536878 0%, #708090 100%);
-            color: white;
+            background: linear-gradient(135deg, #0171BD 0%, #26BCE0 100%);
+            color: #F7FAF7;
             border: none;
-            border-radius: 25px;
-            padding: 15px 25px;
-            font-size: 1rem;
+            border-radius: 30px;
+            padding: 18px 30px;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
-            border: 2px solid #DBDBDB;
+            box-shadow: 0 8px 25px rgba(1, 113, 189, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         #sendButton:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(83, 104, 120, 0.4);
-            background: linear-gradient(135deg, #708090 0%, #536878 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(1, 113, 189, 0.4);
+            background: linear-gradient(135deg, #26BCE0 0%, #CD4979 100%);
         }
 
         #sendButton:disabled {
-            opacity: 0.6;
+            opacity: 0.7;
             cursor: not-allowed;
             transform: none;
         }
 
         .typing-indicator {
             display: none;
-            padding: 15px 20px;
-            color: #536878;
+            padding: 18px 25px;
+            color: #0171BD;
             font-style: italic;
         }
 
         .typing-dots {
             display: inline-block;
-            animation: typing 1.5s infinite;
+            animation: typing 2s infinite;
         }
 
         @keyframes typing {
-            0%, 60%, 100% { opacity: 0; }
+            0%, 60%, 100% { opacity: 0.3; }
             30% { opacity: 1; }
         }
 
         .examples {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 2px solid #708090;
+            background: linear-gradient(135deg, #F7FAF7 0%, rgba(38, 188, 224, 0.08) 100%);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.1);
+            border: 3px solid #26BCE0;
         }
 
         .examples h3 {
-            color: #36454f;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            color: #0171BD;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .examples h3 i {
+            color: #DFAF3B;
         }
 
         .example-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .example-button {
-            background: #f8f9fa;
-            border: 2px solid #708090;
-            border-radius: 15px;
-            padding: 10px 15px;
+            background: linear-gradient(135deg, #F7FAF7 0%, rgba(223, 175, 59, 0.1) 100%);
+            border: 2px solid #26BCE0;
+            border-radius: 20px;
+            padding: 12px 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
-            color: #36454f;
+            font-size: 0.95rem;
+            color: #0171BD;
+            font-weight: 500;
         }
 
         .example-button:hover {
-            background: linear-gradient(135deg, #E69DB8 0%, #DBDBDB 100%);
-            color: #36454f;
-            border-color: #536878;
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #DFAF3B 0%, #CD4979 100%);
+            color: #F7FAF7;
+            border-color: #CD4979;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(223, 175, 59, 0.4);
         }
 
         .error-message {
-            background: #fff5f5;
-            color: #e53e3e;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border-left: 5px solid #e53e3e;
+            background: linear-gradient(135deg, #F7FAF7 0%, rgba(205, 73, 121, 0.1) 100%);
+            color: #CD4979;
+            padding: 18px;
+            border-radius: 15px;
+            margin: 12px 0;
+            border-left: 6px solid #CD4979;
+            box-shadow: 0 5px 20px rgba(205, 73, 121, 0.2);
         }
 
         .loading {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ffffff;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(247, 250, 247, 0.3);
             border-radius: 50%;
-            border-top-color: transparent;
+            border-top-color: #F7FAF7;
             animation: spin 1s ease-in-out infinite;
         }
 
@@ -255,15 +309,20 @@
 
         @media (max-width: 600px) {
             .container {
-                padding: 10px;
+                padding: 15px;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .subtitle {
-                font-size: 1rem;
+                font-size: 1.1rem;
+            }
+            
+            .theotokos-icon {
+                width: 100px;
+                height: 100px;
             }
             
             .user-message .message-bubble,
@@ -277,10 +336,16 @@
             
             .input-container {
                 flex-direction: column;
+                gap: 12px;
             }
             
             #sendButton {
-                border-radius: 15px;
+                border-radius: 20px;
+                justify-content: center;
+            }
+            
+            .messages {
+                height: 350px;
             }
         }
     </style>
@@ -288,9 +353,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <span class="theotokos-icon">🕊️</span>
+            <div class="theotokos-icon">
+                <img src="/custom.png" alt="Theotokos Divine Image">
+            </div>
             <h1>Theotokos</h1>
-            <p class="subtitle">Divine Guidance </p>
+            <p class="subtitle">Divine Guidance</p>
         </div>
 
         <div class="chat-container">
@@ -312,14 +379,15 @@
                 <div class="input-container">
                     <input type="text" id="userInput" placeholder="Share your heart with Theotokos..." maxlength="500">
                     <button id="sendButton">
-                        <i class="fas fa-dove"></i> Send
+                        <i class="fas fa-dove"></i>
+                        <span>Send</span>
                     </button>
                 </div>
             </div>
         </div>
 
         <div class="examples">
-            <h3><i class="fas fa-lightbulb"></i> Seek guidance about:</h3>
+            <h3><i class="fas fa-star"></i> Seek guidance about:</h3>
             <div class="example-buttons">
                 <button class="example-button" onclick="fillInput('My partner and I keep fighting about money')">Financial harmony</button>
                 <button class="example-button" onclick="fillInput('I feel like my partner doesn\'t listen to me')">Communication struggles</button>
@@ -413,7 +481,7 @@
         function hideTyping() {
             typingIndicator.style.display = 'none';
             sendButton.disabled = false;
-            sendButton.innerHTML = '<i class="fas fa-dove"></i> Send';
+            sendButton.innerHTML = '<i class="fas fa-dove"></i><span>Send</span>';
         }
 
         function fillInput(text) {

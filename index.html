@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Theotokos - Divine Guidance</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@clerk/clerk-js@4/dist/clerk.browser.js"></script>
     <style>
         * {
             margin: 0;
@@ -23,6 +24,80 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+        }
+
+        .auth-container {
+            display: none;
+            text-align: center;
+            background: #F7FAF7;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.2);
+            margin-bottom: 30px;
+            border: 3px solid #26BCE0;
+        }
+
+        .auth-container.show {
+            display: block;
+        }
+
+        .main-app {
+            display: none;
+        }
+
+        .main-app.show {
+            display: block;
+        }
+
+        .user-info {
+            background: #F7FAF7;
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 25px rgba(1, 113, 189, 0.15);
+            border: 2px solid #26BCE0;
+        }
+
+        .user-info.show {
+            display: flex;
+        }
+
+        .user-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #DFAF3B;
+        }
+
+        .user-name {
+            color: #0171BD;
+            font-weight: bold;
+        }
+
+        .sign-out-btn {
+            background: linear-gradient(135deg, #CD4979 0%, #0171BD 100%);
+            color: #F7FAF7;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .sign-out-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(205, 73, 121, 0.4);
         }
 
         .header {
@@ -191,6 +266,10 @@
             transform: translateY(-2px);
         }
 
+        #userInput::placeholder {
+            color: #8bb3b1;
+        }
+
         #sendButton {
             background: linear-gradient(135deg, #0171BD 0%, #26BCE0 100%);
             color: #F7FAF7;
@@ -307,6 +386,84 @@
             to { transform: rotate(360deg); }
         }
 
+        .auth-welcome {
+            font-size: 1.6rem;
+            color: #0171BD;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .auth-description {
+            color: #26BCE0;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+
+        .sign-in-link {
+            background: rgba(247, 250, 247, 0.9);
+            border: 2px solid #DFAF3B;
+            color: #0171BD;
+            padding: 10px 18px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .sign-in-link:hover {
+            background: linear-gradient(135deg, #26BCE0 0%, #0171BD 100%);
+            color: #F7FAF7;
+            transform: translateY(-2px);
+            border-color: #26BCE0;
+        }
+
+        /* Elegant decorative elements */
+        .header::after {
+            content: "✦";
+            display: block;
+            font-size: 1.8rem;
+            color: #DFAF3B;
+            margin-top: 15px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .wisdom-tag::before {
+            content: "✨ ";
+            color: #F7FAF7;
+        }
+
+        /* Subtle accent touches */
+        .chat-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #DFAF3B, #CD4979, #DFAF3B);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .examples::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #26BCE0, transparent);
+            border-radius: 0 0 25px 25px;
+        }
+
+        .header, .chat-container, .examples {
+            position: relative;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -347,84 +504,274 @@
             .messages {
                 height: 350px;
             }
+
+            .user-info {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <!-- Auth Container (shown when not signed in) -->
+        <div class="auth-container" id="authContainer">
             <div class="theotokos-icon">
                 <img src="/custom.png" alt="Theotokos Divine Image">
             </div>
             <h1>Theotokos</h1>
-            <p class="subtitle">Divine Guidance [BETA]</p>
+            <p class="auth-welcome">Peace be with you, beloved child!</p>
+            <p class="auth-description">Sign in to receive personalized guidance and preserve intercessions</p>
+            <div id="clerk-signin"></div>
+            <p style="margin-top: 25px; color: #26BCE0;">
+                Or <a href="#" class="sign-in-link" onclick="showMainApp(); return false;">continue without signing in</a>
+            </p>
         </div>
 
-        <div class="chat-container">
-            <div class="messages" id="messages">
-                <div class="message bot-message">
-                    <div class="message-bubble">
-                        <div class="wisdom-tag">✨ Divine Wisdom</div>
-                        Peace be with you, child! I am Theotokos, offering divine maternal guidance for your relationships. I provide counsel rooted in faith, wisdom and compassion. Tell me what troubles your heart?
+        <!-- Main App (shown when signed in OR anonymous) -->
+        <div class="main-app" id="mainApp">
+            <!-- User Info Bar (only shown when authenticated) -->
+            <div class="user-info" id="userInfo">
+                <div class="user-details">
+                    <img id="userAvatar" src="" alt="Profile" class="user-avatar">
+                    <span id="userName" class="user-name"></span>
+                </div>
+                <button class="sign-out-btn" onclick="signOut()">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </button>
+            </div>
+
+            <div class="header">
+                <div class="theotokos-icon">
+                    <img src="/custom.png" alt="Theotokos Divine Image">
+                </div>
+                <h1>Theotokos</h1>
+                <p class="subtitle">Divine Guidance [BETA]</p>
+                <p id="authStatus" style="margin-top: 15px; color: #26BCE0; font-size: 0.95rem;">
+                    <a href="#" class="sign-in-link" onclick="showAuthContainer(); return false;">Sign in for personalized divine experience</a>
+                </p>
+            </div>
+
+            <div class="chat-container">
+                <div class="messages" id="messages">
+                    <div class="message bot-message">
+                        <div class="message-bubble">
+                            <div class="wisdom-tag">Divine Wisdom</div>
+                            Peace be with you, beloved child! I am Theotokos, offering divine maternal guidance for your relationships. I provide counsel rooted in faith, wisdom and compassion. Tell me what troubles your heart today?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typingIndicator">
+                    <span class="wisdom-tag">Praying</span>
+                    Theotokos is seeking divine guidance for your situation<span class="typing-dots">...</span>
+                </div>
+
+                <div class="input-area">
+                    <div class="input-container">
+                        <input type="text" id="userInput" placeholder="Share your heart with Theotokos..." maxlength="500">
+                        <button id="sendButton">
+                            <i class="fas fa-dove"></i>
+                            <span>Send</span>
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="typing-indicator" id="typingIndicator">
-                <span class="wisdom-tag">🙏 Praying</span>
-                Theotokos is seeking divine guidance for your situation<span class="typing-dots">...</span>
-            </div>
 
-            <div class="input-area">
-                <div class="input-container">
-                    <input type="text" id="userInput" placeholder="Share your heart with Theotokos..." maxlength="500">
-                    <button id="sendButton">
-                        <i class="fas fa-dove"></i>
-                        <span>Send</span>
-                    </button>
+            <div class="examples">
+                <h3><i class="fas fa-dove"></i> Seek guidance about:</h3>
+                <div class="example-buttons">
+                    <button class="example-button" onclick="fillInput('My partner and I keep fighting about money')">Financial harmony</button>
+                    <button class="example-button" onclick="fillInput('I feel like my partner doesn\'t listen to me')">Communication struggles</button>
+                    <button class="example-button" onclick="fillInput('We\'re thinking about moving in together')">Sacred commitments</button>
+                    <button class="example-button" onclick="fillInput('My partner\'s family doesn\'t like me')">Family blessings</button>
+                    <button class="example-button" onclick="fillInput('We have different life goals')">Life's purpose together</button>
+                    <button class="example-button" onclick="fillInput('I\'m not sure if this relationship is right for me')">Divine discernment</button>
                 </div>
-            </div>
-        </div>
-
-        <div class="examples">
-            <h3><i class="fas fa-dove"></i> Seek guidance about:</h3>
-            <div class="example-buttons">
-                <button class="example-button" onclick="fillInput('My partner and I keep fighting about money')">Financial harmony</button>
-                <button class="example-button" onclick="fillInput('I feel like my partner doesn\'t listen to me')">Communication struggles</button>
-                <button class="example-button" onclick="fillInput('We\'re thinking about moving in together')">Sacred commitments</button>
-                <button class="example-button" onclick="fillInput('My partner\'s family doesn\'t like me')">Family blessings</button>
-                <button class="example-button" onclick="fillInput('We have different life goals')">Life's purpose together</button>
-                <button class="example-button" onclick="fillInput('I\'m not sure if this relationship is right for me')">Divine discernment</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Replace with your actual Clerk publishable key for Theotokos
+        const CLERK_PUBLISHABLE_KEY = 'pk_live_Y2xlcmsudGhlb3Rva29zLmFpJA';
         const API_BASE_URL = 'https://theotokos-production.up.railway.app';
+        
+        let clerk;
+        let currentUser = null;
+        let userToken = null;
+
+        // Initialize Clerk
+        async function initClerk() {
+            try {
+                // Check if Clerk is available
+                if (typeof Clerk === 'undefined') {
+                    console.error('Clerk library not loaded - falling back to anonymous mode');
+                    showMainApp();
+                    return;
+                }
+
+                console.log('Initializing Clerk...');
+                clerk = new Clerk(CLERK_PUBLISHABLE_KEY);
+                await clerk.load();
+                console.log('Clerk loaded successfully');
+
+                // Check if user is already signed in
+                if (clerk.user) {
+                    console.log('User found:', clerk.user);
+                    await handleSignedIn(clerk.user);
+                } else {
+                    console.log('No user found, showing auth');
+                    showAuthContainer();
+                }
+
+                // Mount sign-in component initially
+                if (document.getElementById('clerk-signin')) {
+                    try {
+                        clerk.mountSignIn(document.getElementById('clerk-signin'), {
+                            signUpUrl: window.location.href,
+                            afterSignInUrl: window.location.href,
+                            redirectUrl: window.location.href
+                        });
+                        console.log('Initial Clerk sign-in mounted');
+                    } catch (error) {
+                        console.error('Error mounting initial sign-in:', error);
+                    }
+                }
+
+                // Listen for auth changes
+                clerk.addListener((event) => {
+                    console.log('Clerk event:', event.type);
+                    if (event.type === 'user:signed_in') {
+                        handleSignedIn(event.user);
+                    } else if (event.type === 'user:signed_out') {
+                        handleSignedOut();
+                    }
+                });
+
+            } catch (error) {
+                console.error('Error initializing Clerk:', error);
+                // Show app without auth if Clerk fails
+                showMainApp();
+            }
+        }
+
+        async function handleSignedIn(user) {
+            console.log('Handling signed in user:', user);
+            currentUser = user;
+            try {
+                userToken = await user.getToken();
+                console.log('Got user token');
+            } catch (error) {
+                console.error('Error getting token:', error);
+            }
+            
+            // Update user info
+            document.getElementById('userAvatar').src = user.imageUrl || '/default-avatar.png';
+            document.getElementById('userName').textContent = user.firstName || user.emailAddresses[0].emailAddress;
+            
+            // Show authenticated state
+            document.getElementById('userInfo').classList.add('show');
+            document.getElementById('authStatus').innerHTML = '<span style="color: #26BCE0;">✓ Blessed - divine conversations preserved</span>';
+            
+            showMainApp();
+        }
+
+        function handleSignedOut() {
+            console.log('Handling signed out');
+            currentUser = null;
+            userToken = null;
+            
+            // Hide user info
+            document.getElementById('userInfo').classList.remove('show');
+            document.getElementById('authStatus').innerHTML = '<a href="#" class="sign-in-link" onclick="showAuthContainer(); return false;">Sign in for personalized divine experience</a>';
+            
+            showAuthContainer();
+        }
+
+        function showAuthContainer() {
+            console.log('Showing auth container');
+            document.getElementById('authContainer').classList.add('show');
+            document.getElementById('mainApp').classList.remove('show');
+            
+            // Ensure Clerk sign-in is mounted when showing auth container
+            if (clerk && document.getElementById('clerk-signin')) {
+                // Clear and remount to ensure it appears
+                document.getElementById('clerk-signin').innerHTML = '';
+                setTimeout(() => {
+                    try {
+                        clerk.mountSignIn(document.getElementById('clerk-signin'), {
+                            signUpUrl: window.location.href,
+                            afterSignInUrl: window.location.href,
+                            redirectUrl: window.location.href
+                        });
+                        console.log('Clerk sign-in mounted successfully');
+                    } catch (error) {
+                        console.error('Error mounting sign-in:', error);
+                    }
+                }, 100);
+            }
+        }
+
+        function showMainApp() {
+            console.log('Showing main app');
+            document.getElementById('authContainer').classList.remove('show');
+            document.getElementById('mainApp').classList.add('show');
+        }
+
+        async function signOut() {
+            console.log('Signing out...');
+            try {
+                if (clerk) {
+                    await clerk.signOut();
+                    console.log('Signed out successfully');
+                } else {
+                    console.log('No clerk instance, handling manually');
+                    handleSignedOut();
+                }
+            } catch (error) {
+                console.error('Error signing out:', error);
+                // Force sign out state
+                handleSignedOut();
+            }
+        }
+
+        // Chat functionality
         const messagesContainer = document.getElementById('messages');
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
         const typingIndicator = document.getElementById('typingIndicator');
 
-        // Handle sending messages
         async function sendMessage() {
             const message = userInput.value.trim();
             if (!message) return;
 
-            // Add user message
             addMessage(message, 'user');
             userInput.value = '';
             
-            // Show typing indicator
             showTyping();
             
             try {
+                const headers = {
+                    'Content-Type': 'application/json',
+                };
+
+                // Add auth token if available
+                if (userToken) {
+                    headers['Authorization'] = `Bearer ${userToken}`;
+                    console.log('Sending authenticated request');
+                } else {
+                    console.log('Sending anonymous request');
+                }
+
                 const response = await fetch(`${API_BASE_URL}/advice`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ situation: message }),
+                    headers: headers,
+                    body: JSON.stringify({ 
+                        situation: message,
+                        user_id: currentUser?.id || null
+                    }),
                 });
 
                 if (!response.ok) {
@@ -433,7 +780,6 @@
 
                 const data = await response.json();
                 
-                // Hide typing indicator and add response
                 hideTyping();
                 addMessage(data.advice, 'bot');
                 
@@ -454,7 +800,7 @@
             if (sender === 'bot' && !isError) {
                 const wisdomTag = document.createElement('div');
                 wisdomTag.className = 'wisdom-tag';
-                wisdomTag.innerHTML = '✨ Divine Guidance';
+                wisdomTag.innerHTML = 'Divine Guidance';
                 bubbleDiv.appendChild(wisdomTag);
             }
             
@@ -467,7 +813,6 @@
             messageDiv.appendChild(bubbleDiv);
             messagesContainer.appendChild(messageDiv);
             
-            // Scroll to bottom
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
@@ -498,7 +843,13 @@
             }
         });
 
-        // Auto-focus input
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            console.log('Page loaded, initializing...');
+            initClerk();
+        });
+
+        // Auto-focus input when main app is shown
         userInput.focus();
     </script>
 </body>

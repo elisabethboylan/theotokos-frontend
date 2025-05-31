@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Theotokos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0171BD 0%, #26BCE0 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: #F7FAF7;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.2);
+            border: 3px solid #26BCE0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(38, 188, 224, 0.1) 0%, transparent 70%);
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .theotokos-icon {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #DFAF3B 0%, #CD4979 100%);
+            padding: 0px;
+            box-shadow: 0 10px 30px rgba(223, 175, 59, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .theotokos-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: none;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #CD4979 0%, #DFAF3B 30%, #CD4979 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #0171BD;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content {
+            background: linear-gradient(135deg, #F7FAF7 0%, rgba(38, 188, 224, 0.08) 100%);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.1);
+            border: 3px solid #26BCE0;
+            position: relative;
+        }
+
+        .content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #DFAF3B, #CD4979, #DFAF3B);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .wisdom-tag {
+            background: linear-gradient(45deg, #DFAF3B, #CD4979);
+            color: #F7FAF7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(223, 175, 59, 0.3);
+        }
+
+        .wisdom-tag::before {
+            content: "✨ ";
+            color: #F7FAF7;
+        }
+
+        .last-updated {
+            color: #26BCE0;
+            font-style: italic;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            color: #0171BD;
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #DFAF3B;
+        }
+
+        h3 {
+            color: #0171BD;
+            font-size: 1.2rem;
+            margin: 25px 0 10px 0;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+            color: #333;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #0171BD;
+        }
+
+        .back-link {
+            background: linear-gradient(135deg, #0171BD 0%, #26BCE0 100%);
+            color: #F7FAF7;
+            padding: 18px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(1, 113, 189, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(1, 113, 189, 0.4);
+            background: linear-gradient(135deg, #26BCE0 0%, #CD4979 100%);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .theotokos-icon {
+                width: 150px;
+                height: 150px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .back-link {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="theotokos-icon">
+                <img src="/custom.png" alt="Theotokos Divine Image">
+            </div>
+            <h1>Theotokos</h1>
+            <p class="subtitle">Privacy Policy</p>
+        </div>
+
+        <div class="content">
+            <div class="wisdom-tag">Sacred Privacy</div>
+            <p class="last-updated">Last updated: May 30, 2025</p>
+
+            <h2>1. Our Sacred Commitment to Your Privacy</h2>
+            <p>At Theotokos, we honor the sanctity of your spiritual journey and personal information. This Privacy Policy describes how we collect, use, and protect your information with the same reverence we hold for divine wisdom. Your trust is sacred to us, and we are committed to being faithful stewards of your personal data.</p>
+
+            <h2>2. Information We Collect with Reverence</h2>
+            <p>We collect information to better serve your spiritual needs and provide personalized divine guidance:</p>
+            
+            <h3>Information You Share with Us</h3>
+            <ul>
+                <li><strong>Account Information:</strong> Email address, name, and profile information when you join our spiritual community</li>
+                <li><strong>Spiritual Conversations:</strong> Messages and questions you share with Theotokos for divine guidance</li>
+                <li><strong>Sacred Offerings:</strong> Billing details for premium spiritual features (processed securely through blessed third-party providers)</li>
+                <li><strong>Divine Feedback:</strong> Any feedback, testimonials, or spiritual insights you choose to share</li>
+            </ul>
+
+            <h3>Information We Collect Automatically</h3>
+            <ul>
+                <li><strong>Usage Patterns:</strong> How you interact with our divine service, including features used and time spent in spiritual reflection</li>
+                <li><strong>Device Information:</strong> Device type, browser type, IP address, and operating system for security and service optimization</li>
+                <li><strong>Sacred Cookies:</strong> We use cookies and similar technologies to enhance your spiritual experience and remember your preferences</li>
+            </ul>
+
+            <h2>3. How We Use Your Sacred Information</h2>
+            <p>We use the information we collect with divine purpose to:</p>
+            <ul>
+                <li>Provide, maintain, and improve Theotokos spiritual guidance services</li>
+                <li>Personalize your spiritual journey and provide relevant divine wisdom</li>
+                <li>Process sacred offerings and manage premium spiritual subscriptions</li>
+                <li>Communicate with you about divine services, spiritual updates, and support</li>
+                <li>Analyze prayer patterns to improve our AI's spiritual responses and wisdom</li>
+                <li>Protect the sanctity of our service and prevent misuse</li>
+                <li>Fulfill our sacred obligations under applicable laws</li>
+                <li>Preserve and honor your spiritual conversation history for continuity of guidance</li>
+            </ul>
+
+            <h2>4. Sacred Sharing and Divine Disclosure</h2>
+            <p>We do not sell, trade, or rent your personal information to third parties. Your spiritual journey is sacred and confidential. We may share your information only in these blessed circumstances:</p>
+            <ul>
+                <li><strong>Trusted Service Providers:</strong> With carefully chosen third-party providers who help us maintain our divine service (hosting, payment processing, analytics) under strict confidentiality agreements</li>
+                <li><strong>Legal Obligations:</strong> When required by law, court order, or to protect the safety and well-being of our spiritual community</li>
+                <li><strong>Sacred Transitions:</strong> In connection with a merger, acquisition, or blessed transfer of our divine mission</li>
+                <li><strong>Your Consent:</strong> With your explicit blessing for specific spiritual purposes</li>
+            </ul>
+
+            <h2>5. Divine Security and Protection</h2>
+            <p>We implement blessed security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These sacred protections include:</p>
+            <ul>
+                <li>Encryption of data during transmission and storage, protecting your spiritual conversations</li>
+                <li>Regular security assessments and divine updates to our protection systems</li>
+                <li>Limited access to personal information on a sacred need-to-know basis</li>
+                <li>Secure, blessed hosting infrastructure and divine data centers</li>
+                <li>Multi-factor authentication and advanced access controls</li>
+            </ul>
+
+            <h2>6. Sacred Data Retention</h2>
+            <p>We retain your personal information for as long as necessary to provide our spiritual services and fulfill our divine mission. Specifically:</p>
+            <ul>
+                <li><strong>Account Data:</strong> Retained while your spiritual account is active and for a reasonable period after deletion for administrative purposes</li>
+                <li><strong>Spiritual Conversations:</strong> Stored to maintain continuity of divine guidance and improve service quality for your spiritual growth</li>
+                <li><strong>Analytics Data:</strong> May be retained in aggregated, anonymized form for understanding spiritual patterns and improving divine wisdom</li>
+                <li><strong>Payment Information:</strong> Retained as required by law and for legitimate business purposes</li>
+            </ul>
+
+            <h2>7. Your Sacred Privacy Rights</h2>
+            <p>Depending on your location, you may have certain blessed rights regarding your personal information:</p>
+            <ul>
+                <li><strong>Divine Access:</strong> Request a copy of the personal information we hold about your spiritual journey</li>
+                <li><strong>Sacred Correction:</strong> Request correction of inaccurate or incomplete information with truthfulness</li>
+                <li><strong>Blessed Deletion:</strong> Request deletion of your personal information (subject to legal and legitimate business requirements)</li>
+                <li><strong>Divine Portability:</strong> Request transfer of your spiritual data to another service</li>
+                <li><strong>Sacred Opt-out:</strong> Unsubscribe from spiritual communications while maintaining essential service notifications</li>
+                <li><strong>Wisdom Withdrawal:</strong> Object to certain uses of your information for spiritual guidance improvement</li>
+            </ul>
+
+            <h2>8. Sacred Cookies and Divine Tracking</h2>
+            <p>We use cookies and similar blessed technologies to:</p>
+            <ul>
+                <li>Remember your spiritual preferences and divine settings</li>
+                <li>Analyze spiritual engagement patterns and service usage</li>
+                <li>Provide personalized content and blessed guidance</li>
+                <li>Enable spiritual community features and divine sharing</li>
+                <li>Ensure security and prevent unauthorized access to your spiritual journey</li>
+            </ul>
+            <p>You can control cookies through your browser settings, though this may affect the divine functionality of certain spiritual features.</p>
+
+            <h2>9. Blessed Third-Party Services</h2>
+            <p>Our divine service integrates with trusted third-party providers including:</p>
+            <ul>
+                <li><strong>Clerk:</strong> For blessed user authentication and sacred account management</li>
+                <li><strong>Railway:</strong> For hosting our divine backend services with security and reliability</li>
+                <li><strong>Vercel:</strong> For hosting our sacred website with divine performance</li>
+                <li><strong>Payment Processors:</strong> For handling subscription offerings with security and trust</li>
+            </ul>
+            <p>These blessed partners have their own privacy policies governing their use of your information, and we encourage you to review them.</p>
+
+            <h2>10. Sacred Protection of Children</h2>
+            <p>Theotokos is designed for adults seeking spiritual guidance and is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us immediately so we may bless them with appropriate protection.</p>
+
+            <h2>11. Divine International Data Transfers</h2>
+            <p>Your sacred information may be transferred to and processed in countries other than your own as part of our global divine mission. We ensure appropriate blessed safeguards are in place to protect your privacy rights across all spiritual boundaries.</p>
+
+            <h2>12. Sacred Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time with divine guidance and wisdom. We will notify you of any material changes by posting the new policy on this sacred page and updating the "Last updated" date. Significant changes will be communicated through divine notification via email or service announcement.</p>
+
+            <h2>13. Spiritual Data Minimization</h2>
+            <p>In keeping with our sacred values, we practice divine data minimization - collecting only the information necessary to provide blessed spiritual guidance and maintain the integrity of our divine service.</p>
+
+            <h2>14. Contact for Divine Privacy Guidance</h2>
+            <p>If you have any questions about this Privacy Policy, your sacred rights, or how we handle your personal information, please contact us through our website. We are here to serve with transparency, love, and divine wisdom in all matters concerning your privacy and spiritual journey.</p>
+
+            <a href="/" class="back-link">
+                <i class="fas fa-dove"></i>
+                <span>Return to Divine Guidance</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

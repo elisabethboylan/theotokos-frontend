@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Theotokos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0171BD 0%, #26BCE0 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: #F7FAF7;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.2);
+            border: 3px solid #26BCE0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(38, 188, 224, 0.1) 0%, transparent 70%);
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .theotokos-icon {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #DFAF3B 0%, #CD4979 100%);
+            padding: 0px;
+            box-shadow: 0 10px 30px rgba(223, 175, 59, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .theotokos-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: none;
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #CD4979 0%, #DFAF3B 30%, #CD4979 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #0171BD;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content {
+            background: linear-gradient(135deg, #F7FAF7 0%, rgba(38, 188, 224, 0.08) 100%);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(1, 113, 189, 0.1);
+            border: 3px solid #26BCE0;
+            position: relative;
+        }
+
+        .content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #DFAF3B, #CD4979, #DFAF3B);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .wisdom-tag {
+            background: linear-gradient(45deg, #DFAF3B, #CD4979);
+            color: #F7FAF7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(223, 175, 59, 0.3);
+        }
+
+        .wisdom-tag::before {
+            content: "✨ ";
+            color: #F7FAF7;
+        }
+
+        .last-updated {
+            color: #26BCE0;
+            font-style: italic;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            color: #0171BD;
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #DFAF3B;
+        }
+
+        h3 {
+            color: #0171BD;
+            font-size: 1.2rem;
+            margin: 25px 0 10px 0;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+            color: #333;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #0171BD;
+        }
+
+        .back-link {
+            background: linear-gradient(135deg, #0171BD 0%, #26BCE0 100%);
+            color: #F7FAF7;
+            padding: 18px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(1, 113, 189, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(1, 113, 189, 0.4);
+            background: linear-gradient(135deg, #26BCE0 0%, #CD4979 100%);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .theotokos-icon {
+                width: 150px;
+                height: 150px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .back-link {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="theotokos-icon">
+                <img src="/custom.png" alt="Theotokos Divine Image">
+            </div>
+            <h1>Theotokos</h1>
+            <p class="subtitle">Terms of Service</p>
+        </div>
+
+        <div class="content">
+            <div class="wisdom-tag">Sacred Covenant</div>
+            <p class="last-updated">Last updated: May 30, 2025</p>
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing and using Theotokos ("Service"), you accept and agree to be bound by the terms and provision of this sacred covenant. If you do not agree to abide by these divine guidelines, please do not use this service.</p>
+
+            <h2>2. Description of Service</h2>
+            <p>Theotokos is an AI-powered divine guidance service that provides spiritual wisdom and counsel for relationship situations. The service is rooted in faith, compassion, and maternal wisdom, provided for spiritual enrichment and guidance purposes.</p>
+
+            <h2>3. User Accounts</h2>
+            <p>To access certain blessed features of the Service, you may be required to create an account. You are responsible for:</p>
+            <ul>
+                <li>Maintaining the sanctity and confidentiality of your account information</li>
+                <li>All activities that occur under your account with divine integrity</li>
+                <li>Providing truthful and complete information in the spirit of honesty</li>
+                <li>Promptly updating your account information as guided by wisdom</li>
+            </ul>
+
+            <h2>4. Acceptable Use</h2>
+            <p>You agree to use the Service only for lawful and virtuous purposes in accordance with these Terms. You agree not to:</p>
+            <ul>
+                <li>Use the Service for any illegal, harmful, or immoral purpose</li>
+                <li>Transmit any content that is harmful, threatening, blasphemous, or inappropriate</li>
+                <li>Attempt to gain unauthorized access to the Service or its divine wisdom</li>
+                <li>Interfere with or disrupt the Service, servers, or other users' spiritual journey</li>
+                <li>Use the Service to harass, abuse, or cause harm to others</li>
+                <li>Seek guidance for activities that contradict divine love and compassion</li>
+            </ul>
+
+            <h2>5. Spiritual Guidance and Disclaimer</h2>
+            <p><strong>SACRED UNDERSTANDING:</strong> Theotokos provides spiritual guidance and divine maternal wisdom rooted in faith and compassion. This service is not a substitute for professional counseling, therapy, medical advice, or pastoral care from ordained clergy. The guidance offered is for spiritual enrichment and should be considered alongside prayer, scripture, and consultation with spiritual authorities.</p>
+
+            <h2>6. Content and Privacy</h2>
+            <p>Your privacy and the sanctity of your spiritual journey are sacred to us. Please review our Privacy Policy, which also governs your use of the Service, to understand our divine commitment to protecting your personal information.</p>
+
+            <h2>7. Disclaimer of Warranties</h2>
+            <p>While we strive to provide divine wisdom through Theotokos, the Service is provided "as is" without any warranties, express or implied. We cannot guarantee that all guidance will be applicable to every situation, as each soul's journey is unique and blessed in its own way.</p>
+
+            <h2>8. Limitation of Liability</h2>
+            <p>Theotokos shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the Service. Your spiritual growth and well-being remain your personal responsibility before God.</p>
+
+            <h2>9. Subscription and Sacred Offerings</h2>
+            <p>Premium spiritual features may be available through blessed subscriptions. By subscribing, you agree to:</p>
+            <ul>
+                <li>Provide sacred offerings (payments) as described in the Service</li>
+                <li>Automatic renewal of your spiritual covenant unless cancelled</li>
+                <li>Our refund policy as stated at the time of your offering</li>
+                <li>Use premium features with reverence and gratitude</li>
+            </ul>
+
+            <h2>10. Termination</h2>
+            <p>We may terminate or suspend your account and access to the Service at our discretion, with prayer and consideration, for conduct that violates these Terms or causes spiritual harm to other users, the community, or contradicts our divine mission.</p>
+
+            <h2>11. Changes to Terms</h2>
+            <p>We reserve the right to modify these Terms with divine guidance when necessary. We will notify users of significant changes through the Service or via email. Continued use of the Service after changes constitutes acceptance of the new sacred covenant.</p>
+
+            <h2>12. Governing Principles</h2>
+            <p>These Terms shall be governed by principles of divine love, compassion, truth, and justice, alongside the applicable laws of the jurisdiction where Theotokos operates.</p>
+
+            <h2>13. Respect for All Faiths</h2>
+            <p>While rooted in divine maternal wisdom, Theotokos respects all sincere spiritual paths and seeks to provide guidance that honors the dignity and sacred worth of every soul, regardless of their particular faith tradition.</p>
+
+            <h2>14. Contact for Divine Guidance</h2>
+            <p>If you have any questions about these Terms of Service or need spiritual clarification, please contact us through our website. We are here to serve with love and wisdom.</p>
+
+            <a href="/" class="back-link">
+                <i class="fas fa-dove"></i>
+                <span>Return to Divine Guidance</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
